@@ -1,6 +1,6 @@
 Feature: Search by keyword
 
-  Scenario: Searching for a term
-    Given Sergey is on the DuckDuckGo home page
-    When he searches for "cucumber"
-    Then all the result titles should contain the word "cucumber"
+  Scenario: Buscar un item especifico y agregarlo al carrito de compras
+    Given Que ingreso a la pagina de sauce demo
+    When busco e ingreso un producto al carrito de compra
+    Then observo en pantalla el mensaje "checkout"

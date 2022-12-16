@@ -6,13 +6,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import questions.Mensaje;
 import starter.navigation.NavigateTo;
 import starter.search.SearchFor;
 import starter.search.SearchResult;
+import tasks.Ingresaralapagina;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.actors.OnStage.*;
 import static org.hamcrest.Matchers.*;
 import static starter.matchers.StringContainsIgnoringCase.containsIgnoringCase;
 
@@ -28,18 +29,16 @@ public class SearchOnDuckDuckGoStepDefinitions {
         theActorCalled(actor).attemptsTo(NavigateTo.theDuckDuckGoHomePage());
     }
 
-    @When("^s?he searches for \"(.*)\"")
-    public void search_for(String term) {
-        theActorInTheSpotlight().attemptsTo( SearchFor.term(term) );
+
+    @When("busco e ingreso un producto al carrito de compra")
+    public void busco_e_ingreso_un_producto_al_carrito_de_compra() {
+        // Write code here that turns the phrase above into concrete actions
+        theActorInTheSpotlight().attemptsTo(Ingresaralapagina.ingresando());
     }
 
-    @Then("^all the result titles should contain the word \"(.*)\"")
-    public void all_the_result_titles_should_contain_the_word(String term) {
-        theActorInTheSpotlight().should(
-                seeThat("search result titles",
-                        SearchResult.titles(), hasSize(greaterThan(0))),
-                seeThat("search result titles",
-                        SearchResult.titles(), everyItem(containsIgnoringCase(term)))
-        );
+    @Then("observo en pantalla el mensaje {string}")
+    public void observo_en_pantalla_el_mensaje(String text) {
+        // Write code here that turns the phrase above into concrete actions
+        theActorInTheSpotlight().should(seeThat(Mensaje.remover(), equalTo(text)));
     }
 }
